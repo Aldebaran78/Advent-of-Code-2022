@@ -12,11 +12,6 @@ const totalDisk = 70000000;
 const emptyDiskSpace = 30000000;
 let tmp = 0;
 
-//delete old 'dir' directory
-if (fs.existsSync('./'+dirName)) {
-    fs.rmSync('./'+dirName, { recursive: true })
-};
-
 let dir = '';
 //generate the 'dir' directory
 input.forEach(el => {
@@ -71,6 +66,11 @@ function cycleFolder() {
         else if (tmp >= freeSpace) largeDir.push(tmp)
         ////////////////////////////////////////////////////////////////
     });
+    //delete old 'dir' directory
+    if (fs.existsSync('./'+dirName)) {
+        fs.rmSync('./'+dirName, { recursive: true })
+    };
+    
     return [ result.reduce((acc, el) => acc + el), Math.min(...largeDir) ]
 };
 
